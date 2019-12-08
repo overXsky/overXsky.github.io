@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://xuhaotian.vip').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="事情源起前几天晚上和朋友闲聊，聊到京东时不时会发一些神券，抢到就是赚到，无奈这种好事总是与我擦肩而过…">
+<meta name="keywords" content=".NET,逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content=".NET软件破解初体验">
+<meta property="og:url" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;index.html">
+<meta property="og:site_name" content="Boom">
+<meta property="og:description" content="事情源起前几天晚上和朋友闲聊，聊到京东时不时会发一些神券，抢到就是赚到，无奈这种好事总是与我擦肩而过…">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;main.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_1.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_2.jpeg">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_9.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_7.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_10.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_11.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_12.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_13.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_14.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_15.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;net_crack_16.png">
+<meta property="og:updated_time" content="2018-12-08T14:07:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;05&#x2F;02&#x2F;NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C&#x2F;main.jpg">
+
+<link rel="canonical" href="http://xuhaotian.vip/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>.NET软件破解初体验 | Boom</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Boom" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Boom</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Shakalaka</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuhaotian.vip/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/360.jpg">
+      <meta itemprop="name" content="徐昊天">
+      <meta itemprop="description" content="You only live once.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boom">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          .NET软件破解初体验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-05-02 21:55:42" itemprop="dateCreated datePublished" datetime="2017-05-02T21:55:42+08:00">2017-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-12-08 22:07:42" itemprop="dateModified" datetime="2018-12-08T22:07:42+08:00">2018-12-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%86%E5%90%91/" itemprop="url" rel="index">
+                    <span itemprop="name">逆向</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/main.jpg" class="">
+
+</br>
+
+<h1 id="事情源起"><a href="#事情源起" class="headerlink" title="事情源起"></a>事情源起</h1><p>前几天晚上和朋友闲聊，聊到京东时不时会发一些神券，抢到就是赚到，无奈这种好事总是与我擦肩而过… </p>
+<a id="more"></a>
+
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_1.jpeg" class=""> 
+</div>
+
+<p>然后朋友就把我拉进了群，开始还有点小兴奋，拉了好几个人一起进来，结果待了两天发现里面发的都是些不痛不痒的东西，接着被我拉进来的朋友开始吐槽了…</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_2.jpeg" class=""> 
+</div>
+
+<p>很可惜，羊毛群收够人不再收了，在好奇心的驱使下，我本着爱踢行业人员自力更生的优良传统美德，动用搜索引擎大法开始查找羊毛线报相关的信息，找了一大圈最后还是回到了那个让我又爱又恨的<a href="http://www.zuanke8.com" target="_blank" rel="noopener">赚吧</a> —— 这个自从我注册以来就一直没有各种权限的神奇论坛。。。</p>
+<h2 id="What-is-赚吧？"><a href="#What-is-赚吧？" class="headerlink" title="What is 赚吧？"></a>What is 赚吧？</h2><p>赚吧，号称华人第一赚客论坛，吧内自古以来流通着一种名为“果果”的神奇物质。然而，自从入住赚吧以来我的果几乎从未涨过。原因无外乎做任务太慢，直接充钱太傻，购物返果却说查不到plus会员单号（黑人问号？？？）…说到底就是各种懒得弄。不过赚吧内的各种活动线报真心不是盖的，吧内大牛分分钟可以撸掉ofo红包车几万、p2p理财线下超市某东某宁某支付各种羊毛满天飞…（有没有人带带我(✪ω✪)）</p>
+<ul>
+<li>赚吧线报图赏：  <div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_2.png" class=""> 
+</div>
+
+</li>
+</ul>
+<h2 id="赚吧怎么玩"><a href="#赚吧怎么玩" class="headerlink" title="赚吧怎么玩"></a>赚吧怎么玩</h2><h3 id="炼气期玩家：RSS订阅"><a href="#炼气期玩家：RSS订阅" class="headerlink" title="炼气期玩家：RSS订阅"></a>炼气期玩家：RSS订阅</h3><ul>
+<li><p>作为一名新时代高科技分子，不动用一点自动化技术都不好意说自己是研究计算机的。最先想到的自动化技术就是<code>RSS+正则+邮箱转发</code>，很幸运，赚吧已经自带了 RSS 订阅，只需要用支持 RSS 的客户端订阅一下就可以了。</p>
+</li>
+<li><p>这里我用的是 <a href="http://www.inoreader.com" target="_blank" rel="noopener">Inoreader</a> ，一个 Web 端轻量级 RSS 客户端。我把要订阅的页面收藏到一个新建的名为 E-mail 文件夹内，如下图：  </p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_3.png" class=""> 
+</div>
+</li>
+<li><p>接着点击右上角的小齿轮图标，依次进入<code>偏好设置——规则——创建：新规则</code>，按照下图配置新的订阅规则，正则表达式就输入想要关注的关键字，用<code>|</code>隔开，电子邮箱填写自己的常用邮箱，最后点击保存，页面自动返回到创建前的界面。</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_4.png" class=""> 
+</div>
+
+</li>
+</ul>
+<blockquote>
+<p>规则右边有四个图标，其中第一个按钮的功能是用来激活或者停用规则，一个小圈带个实心圆点就表明规则正常运行了。</p>
+</blockquote>
+<ul>
+<li><p>还可以进一步设置来减短 RSS 更新的周期。依次点击<code>偏好设置——订阅源</code>，找到之前订阅的赚客吧源，点击源的名称，在弹出来的详细信息窗口下方，增强周期为每10分钟更新一次（默认半小时）</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_5.png" class=""> 
+</div>
+</li>
+<li><p>但是用了一天以后我就发现，虽然我的邮箱确实能够时不时地收到一些线报了，但是像一些抢券、红包等时效性强的信息经常都来不及领就没了，说到底还是 RSS 抓取的不及时导致的，我又不可能时时刻刻守在电脑前像个傻子不停的按 F5 吧…看来需要一种新的方式</p>
+</li>
+</ul>
+<h3 id="筑基期玩家：VisualPing"><a href="#筑基期玩家：VisualPing" class="headerlink" title="筑基期玩家：VisualPing"></a>筑基期玩家：VisualPing</h3><ul>
+<li><p>何为VisualPing？它在<a href="https://visualping.io/" target="_blank" rel="noopener">官网</a>上的介绍是这样的：“We monitor webpages… so you don’t have to!”，翻译成人话：<strong>我们替你来监控网页。</strong>下面还有一行小字是：“Select an area and relax: We’ll send you an email alert when something changes”，对应人话：<strong>选择网页上一个区域，一旦有变化就可以发邮件告诉你。</strong></p>
+</li>
+<li><p>它通过<a href="https://chrome.google.com/webstore/detail/visualping/pemhgklkefakciniebenbfclihhmmfcd" target="_blank" rel="noopener">浏览器插件</a>的方式来运行。目前 Firefox 尚不支持，所以我用 Chrome 来测试了一下，安装完成以后右上角多了一个蓝色的波形图标，使用逻辑很简单：<strong>选择需要监控的网页区域——设置监控时间间隔——保存设置开始监控</strong>就能监控对应的网站了，属于一种比较通用型的解决方案。</p>
+</li>
+<li><p>该方法确实要比 RSS 及时了很多，但是经过我的测试发现，有时候只是帖子多了几个回复而已它就像个2b一样使劲在右下角闪个不停，我们一般想要的都是对新发表的帖子提醒不是么？所以之后我也没去试云端功能，估计还要注册收费一大堆的。就不再废话了。</p>
+</li>
+<li><p>磨叽了一大堆，下面有请本文的主角隆重登场</p>
+</li>
+</ul>
+<h3 id="元婴期玩家：PostMonitor"><a href="#元婴期玩家：PostMonitor" class="headerlink" title="元婴期玩家：PostMonitor"></a>元婴期玩家：PostMonitor</h3><ul>
+<li>线报商品监控神器 PostMonitor 介绍：</li>
+</ul>
+<blockquote>
+<p>PostMonitor：线报&amp;商品监控神器，精雕细琢，史上最强！全网最牛！<br>支持赚客吧、线报屋、赚客之家、鲁大客、抢抢网、赚客网论坛帖子监控！<br>支持爱Q生活网、dir28活动资讯网、寻宝阁、券妈妈等线报监控！<br>支持京东、苏宁、国美、一号店等商品价格&amp;库存监控(支持邮件提醒)！​<br>强大的关键词&amp;黑名单自动筛选、新贴提醒（弹窗、声音、图标闪烁等）、快速预览、回贴、提醒抢果、闹钟提醒等功能！<br>软件支持锁定、支持快捷键操作、帖子收藏等人性化功能。</p>
+</blockquote>
+<ul>
+<li><p>更多的功能直接去上手体验就知道了，反正我用的是非常爽，可惜免费用户只有一个小时的高级VIP体验时间，到点就得忍受各种“不公正”待遇，很难受。</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_9.png" class=""> 
+</div>
+</li>
+<li><p>一年的高级 VIP 更是高达 180 元每年，骇人听闻啊！下面就动手开始来破解~</p>
+</li>
+</ul>
+<h1 id="破解思路"><a href="#破解思路" class="headerlink" title="破解思路"></a>破解思路</h1><h2 id="查壳-amp-脱壳"><a href="#查壳-amp-脱壳" class="headerlink" title="查壳&amp;脱壳"></a>查壳&amp;脱壳</h2><ul>
+<li><p>首先上 Detect It Easy 查壳：</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_6.png" class=""> 
+</div>
+</li>
+<li><p>用的是 .NET Reactor 4.8-4.9 版本的保护，直接上 Reactor 专属脱壳神器 de4dot，理论上5.0以下的壳都能完美脱掉，试一下：</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_7.png" class=""> 
+</div>
+</li>
+<li><p>脱完壳在同级目录下生成了一个加上 cleaned 后缀的文件，执行一下，能够成功运行则说明没问题</p>
+</li>
+</ul>
+<h2 id="反编译-amp-反汇编"><a href="#反编译-amp-反汇编" class="headerlink" title="反编译&amp;反汇编"></a>反编译&amp;反汇编</h2><ul>
+<li>外壳脱完了，接下来就是逆向了，这里强烈推荐 <del>Reflector ，虽然是收费软件，不过天朝国情你懂的嘛</del>  一款反汇编的开源软件 <strong>dnSpy</strong>，项目主页在 <a href="https://github.com/0xd4d/dnSpy" target="_blank" rel="noopener">github</a> 上，它的调试功能非常强大，而且性能强劲，UI 让人赏心悦目</li>
+<li><del>这里我用的是 Reflector 8.5.0.179 版本，用于演示的是试用版本。其实只要不是太旧应该都没问题，正版试用版区别不大（有pj强迫症的同学请自行李彦宏）。</del></li>
+<li>下载好dnspy后得到一个包含大量文件的文件夹，最重要的两个文件是<code>dnSpy.exe</code>以及<code>dnSpy-x86.exe</code>前者用于逆向64位程序，后者用于逆向32位程序。因为我们这里软件是32位的，所以打开<code>.\dnSpy\dnSpy-x86.exe</code>，载入我们脱壳后的文件，项目目录结构、文件名称、反编译源码都一目了然地呈现在面前.<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_10.png" class=""> 
+</div>
+
+</li>
+</ul>
+<h2 id="寻找破解突破点-amp-修改-IL-指令"><a href="#寻找破解突破点-amp-修改-IL-指令" class="headerlink" title="寻找破解突破点&amp;修改 IL 指令"></a>寻找破解突破点&amp;修改 IL 指令</h2><ul>
+<li><p>首先我们以免费用户身份运行一下软件，寻找一下破解的突破口。登录软件以后右下角提示说，“您的VIP授权已到期…”</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_11.png" class=""> 
+</div></li>
+<li><p>使用搜索功能，查找字符串“VIP授权”，一共有7个位置出现了这个关键字，我们依次双击查看，发现有一个变量 <strong>isExpiry</strong> 出现多次。在最后一个函数中，它作为 if 语句的判断条件，当它为真时就会出现对用户 VIP 授权到期相关的提醒。并且从字面意思上也可以知道，它是用来存储用户 VIP 是否过期的一个布尔型变量。</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_12.png" class=""> 
+</div></li>
+<li><p>找到了关键入口点，我们在 isExpiry 上右键–分析，或者使用快捷键<code>Ctrl + Shift + R</code><br>，来观察这个变量被读取和赋值的情况。这个功能是 dnSpy 特有的，十分强大。从业务逻辑上分析不难得出，对于这个变量我们最关注的是对它进行赋值的过程，因为这直接关系到了当前用户的用户组权限问题。所以我们重点开始关注赋值部分，一共有4个函数对它进行了赋值。</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_13.png" class=""> 
+</div></li>
+<li><p>我们就以第一个函数的第一处语句为例，来说明一下对于IL语句的修改方式。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">PublicLibrary.UserInfo.ExpiryTime &#x3D; minValue;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">PublicLibrary.UserInfo.UserName &#x3D; text;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">PublicLibrary.UserInfo.Password &#x3D; text2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">PublicLibrary.UserInfo.IsExpiry &#x3D; (minValue &lt; DateTime.Now);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">PublicLibrary.UserInfo.UserGroupID &#x3D; (PublicLibrary.UserInfo.IsExpiry ? 0 : num);</span></pre></td></tr></table></figure>
+<ul>
+<li><p>这几条语句的意思很明显，首先从服务器上获取用户 VIP 的到期时间，存储在本地 minValue 变量当中，之后将 minValue 与当前系统时间进行对比，那么可想而知得到的结果是 True。</p>
+</li>
+<li><p>修改的思路也很简单，只要将大于号改成小于等于即可，我们在要修改的语句上右键，点击“编辑IL指令”，在弹出IL指令窗口中，选择 op_LessThan – 方法 – op_GreaterThanOrEqual – 确定 – 确定，便可将小于号改为大于等于号。</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_14.png" class=""> 
+</div></li>
+<li><p>接下来一句话是确定用户组，跳转到 UserGroupID 的定义得知有0，1，2三组用户，分别代表了免费、初级 VIP 和高级 VIP，按照我们的逻辑要使得自己成为高级VIP，需要让这句话的执行结果为 2。最简单的思路当然是希望这句话变成：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">PublicLibrary.UserInfo.UserGroupID &#x3D; (!PublicLibrary.UserInfo.IsExpiry ? 2 : num);</span></pre></td></tr></table></figure>
+<p>对应的 IL 语句修改方式如下图所示：</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_15.png" class=""> 
+</div>
+
+<p><code>brtrue</code> 改为 <code>brfalse</code>，即改变判断逻辑，在语句前加上感叹号；<br><code>ldc.i4.0</code> 改为 <code>ldc.i4.2</code>，即将“载入4字节整数0”改为“载入4字节整数2”。</p>
+</li>
+</ul>
+</li>
+<li><p>相信有了以上的引导，剩下的过程便大家发散思维便能得到。这里不写出完整过程，一来保护原作者的权益，二来以免自己引火上身（我才不会告诉你是因为我懒呢= =）。</p>
+</li>
+<li><p>最后放上成果图：</p>
+<div align=center> 
+<img src="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/net_crack_16.png" class=""> 
+</div>
+
+</li>
+</ul>
+<h1 id="缓解措施"><a href="#缓解措施" class="headerlink" title="缓解措施"></a>缓解措施</h1><ul>
+<li>这一小节我们针对上述内容讲一讲，作为一个 .NET 软件开发者如何防范自己的软件被破解<ol>
+<li><strong>加壳，加强壳！</strong>.NET Reactor 什么的太弱了好吗！！！这种有脱壳工具的加固方式就不要再用了，VMP 就是一个很不错的选择。</li>
+<li><strong>代码混淆！！！</strong>自己在做开发的时候变量名通俗易懂是好事，但是发布出去前，请拷贝一个副本然后把代码混淆一下！！！不然别人一眼就知道这个函数/变量/方法的作用了好吗！！！当然<em>花指令</em>什么的我觉得用处不大，随意就好。</li>
+<li><strong>加强验证！！！</strong>只把验证放在本地的都是小白行为，服务器上加强验证手段才是王道。对于本例，免费用户只具有每两分钟请求一次“赚客大家谈”更新的权限，如果一个免费用户突破了两分钟的限制，或者获取了其他越权信息，那么就可以判断它为非法用户。相应的，我们修改客户端请求消息的格式，每条消息需要带上它的用户名，服务器收到后，首先判断该用户所处的用户组，如果非 VIP 用户请求了 VIP 才能获得的信息，那么就不予以响应，甚至把该用户拉黑。</li>
+</ol>
+</li>
+</ul>
+<h1 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h1><ul>
+<li>破解基于 .NET 框架的软件相对还是较为容易的，我们不用费太大功夫就能阅读到源码，可以基于源码直接进行修改。</li>
+<li>想要熟练地逆向 .NET，首先要熟悉 IL 语言中的常用语句（赋值、条件语句、循环语句、判断、数据类型等等），这里给一篇参考：<a href="http://www.cnblogs.com/zery/p/3368460.html" target="_blank" rel="noopener">IL指令详细</a>。</li>
+<li>其次要熟练使用逆向工具，dnSpy 就是一个很好的学习对象，在本文中只用到了最基础的<em>搜索、分析、反编译、修改IL指令</em>功能，它强大的跟踪调试功能才是最为亮眼的利器。另外，运气好的情况下我们可以直接修改反编译出来的源代码然后编译，而不必去修改相对复杂的 IL 指令。但是很多情况下都会因为反编译的不完善而编译报错，最简单的测试办法就是反编译完一个函数直接右键–修改方法，然后什么也不改动直接 compile，如果没报错那么恭喜你这个函数可以直接修改源码了！但更多的情况都是不行的，所以大家老老实实学习IL指令才是正解。</li>
+<li>逆向一道没有捷径，需要多动手，学习 IL 和 dnspy 的最好方式是多动手去调，遇到不会的去查，不要怕出错，而不是先找一堆教程干瞪眼去看，这样学习逆向是毫无用处的。</li>
+<li>最后，本人当然已经与作者取得联系啦，<del>至于作者会不会考虑加强，emmmm…</del>作者已经在新版本中加上了VMP保护~</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>徐昊天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/http:/xuhaotian.vip/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/" title=".NET软件破解初体验">http://xuhaotian.vip/2017/05/02/NET软件破解初体验/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NET/" rel="tag"># .NET</a>
+              <a href="/tags/%E9%80%86%E5%90%91/" rel="tag"># 逆向</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/04/27/omnifocus-1/" rel="prev" title="OmniFocus专业版初步上手指南一">
+      <i class="fa fa-chevron-left"></i> OmniFocus专业版初步上手指南一
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/" rel="next" title="依托 Github Page 绑定域名建站">
+      依托 Github Page 绑定域名建站 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事情源起"><span class="nav-number">1.</span> <span class="nav-text">事情源起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-赚吧？"><span class="nav-number">1.1.</span> <span class="nav-text">What is 赚吧？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赚吧怎么玩"><span class="nav-number">1.2.</span> <span class="nav-text">赚吧怎么玩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#炼气期玩家：RSS订阅"><span class="nav-number">1.2.1.</span> <span class="nav-text">炼气期玩家：RSS订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#筑基期玩家：VisualPing"><span class="nav-number">1.2.2.</span> <span class="nav-text">筑基期玩家：VisualPing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元婴期玩家：PostMonitor"><span class="nav-number">1.2.3.</span> <span class="nav-text">元婴期玩家：PostMonitor</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#破解思路"><span class="nav-number">2.</span> <span class="nav-text">破解思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查壳-amp-脱壳"><span class="nav-number">2.1.</span> <span class="nav-text">查壳&amp;脱壳</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反编译-amp-反汇编"><span class="nav-number">2.2.</span> <span class="nav-text">反编译&amp;反汇编</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找破解突破点-amp-修改-IL-指令"><span class="nav-number">2.3.</span> <span class="nav-text">寻找破解突破点&amp;修改 IL 指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓解措施"><span class="nav-number">3.</span> <span class="nav-text">缓解措施</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后话"><span class="nav-number">4.</span> <span class="nav-text">后话</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="徐昊天"
+      src="/images/360.jpg">
+  <p class="site-author-name" itemprop="name">徐昊天</p>
+  <div class="site-description" itemprop="description">You only live once.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">徐昊天</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">20k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">18 分钟</span>
+</div>
+
+<div>
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+    year - 作为date对象的年份，为4位年份值
+    month - 0-11之间的整数，做为date对象的月份
+    day - 1-31之间的整数，做为date对象的天数
+    hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+    minutes - 0-59之间的整数，做为date对象的分钟数
+    seconds - 0-59之间的整数，做为date对象的秒数
+    microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+    var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已安全运行"+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

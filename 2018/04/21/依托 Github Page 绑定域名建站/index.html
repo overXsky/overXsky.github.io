@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://xuhaotian.vip').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="事由 这个博客刚开不久西部数码的空间就到期了，后来开通了 Google Cloud 试用一年，最近又到期（捂脸），遂打算转移 Github 使用Github的好处： 开通 Github 个人主页超级简单，并且可以和自己的域名绑定 Github 免费 1G 的代码仓库，用作个人博客空间绰绰有余 超便捷的更新部署，还能做版本控制   下面开始动手！">
+<meta name="keywords" content="Github Page">
+<meta property="og:type" content="article">
+<meta property="og:title" content="依托 Github Page 绑定域名建站">
+<meta property="og:url" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2018&#x2F;04&#x2F;21&#x2F;%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99&#x2F;index.html">
+<meta property="og:site_name" content="Boom">
+<meta property="og:description" content="事由 这个博客刚开不久西部数码的空间就到期了，后来开通了 Google Cloud 试用一年，最近又到期（捂脸），遂打算转移 Github 使用Github的好处： 开通 Github 个人主页超级简单，并且可以和自己的域名绑定 Github 免费 1G 的代码仓库，用作个人博客空间绰绰有余 超便捷的更新部署，还能做版本控制   下面开始动手！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2018&#x2F;04&#x2F;21&#x2F;%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99&#x2F;main.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2018&#x2F;04&#x2F;21&#x2F;%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99&#x2F;github1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2018&#x2F;04&#x2F;21&#x2F;%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99&#x2F;github2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2018&#x2F;04&#x2F;21&#x2F;%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99&#x2F;github3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2018&#x2F;04&#x2F;21&#x2F;%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99&#x2F;github4.png">
+<meta property="og:updated_time" content="2019-12-08T14:41:59.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2018&#x2F;04&#x2F;21&#x2F;%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99&#x2F;main.png">
+
+<link rel="canonical" href="http://xuhaotian.vip/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>依托 Github Page 绑定域名建站 | Boom</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Boom" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Boom</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Shakalaka</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuhaotian.vip/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/360.jpg">
+      <meta itemprop="name" content="徐昊天">
+      <meta itemprop="description" content="You only live once.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boom">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          依托 Github Page 绑定域名建站
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-21 01:20:14" itemprop="dateCreated datePublished" datetime="2018-04-21T01:20:14+08:00">2018-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-08 22:41:59" itemprop="dateModified" datetime="2019-12-08T22:41:59+08:00">2019-12-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BB%BA%E7%AB%99/" itemprop="url" rel="index">
+                    <span itemprop="name">建站</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/main.png" class="">
+</br>
+
+<h1 id="事由"><a href="#事由" class="headerlink" title="事由"></a>事由</h1><ul>
+<li>这个博客刚开不久西部数码的空间就到期了，后来开通了 Google Cloud 试用一年，最近又到期（捂脸），遂打算转移 Github</li>
+<li>使用Github的好处：<ol>
+<li>开通 Github 个人主页超级简单，并且可以和自己的域名绑定</li>
+<li>Github 免费 1G 的代码仓库，用作个人博客空间绰绰有余</li>
+<li>超便捷的更新部署，还能做版本控制</li>
+</ol>
+</li>
+<li>下面开始动手！<a id="more"></a>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1></li>
+</ul>
+<ol>
+<li>首先你得有一个 Github 账号</li>
+<li>其次你的电脑上需要安装 Git 命令行环境</li>
+</ol>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><ol>
+<li><p>建立 Github 个人主页，成功后直接访问 “http://你的昵称.github.io”就可以，具体步骤按照下图标注：</p>
+<img src="/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/github1.png" class="">
+</li>
+<li><p>进入刚刚新建的项目仓库，右上角选择settings，下滑到 GitHub Pages 标题处，不出意外的话已经有一行绿色的<code>Your site is published at http://你的昵称.github.io</code>，点击进去，看到该域名已经可以访问了。如果没有的话，在source下选择 master branch，然后点击 Save 即可。</p>
+</li>
+<li><p><strong>Git 环境配置</strong> 依次使用如下命令：</p>
+<ol>
+<li><p>生成SSH密钥对</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;注册Github的邮箱&quot;</span></pre></td></tr></table></figure></li>
+<li><p>复制公钥</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">clip &lt; ~&#x2F;.ssh&#x2F;id_rsa.pub</span></pre></td></tr></table></figure></li>
+<li><p>拷贝公钥</p>
+<ul>
+<li>在Github你的头像上点击，依次进入Settings – SSH and GPG keys – New SSH key，粘贴刚才拷贝的公钥，确认<img src="/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/github2.png" class=""></li>
+</ul>
+</li>
+<li><p>连接 Github</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span></pre></td></tr></table></figure>
+<p> 第一次会提示无法连接，这是正常现象，接着输入<code>yes</code>，回车，稍等片刻就好了</p>
+</li>
+<li><p>配置个人信息</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;起一个非Github昵称的用户名&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">git config --global user.email  &quot;这里可以和Github邮箱相同&quot;</span></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>现在本机环境已经能够通过SSH和Github通信了，下面配置Hexo的配置文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    type: git</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    repository: git@github.com:你的昵称&#x2F;你的昵称.github.io.git</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    branch: master</span></pre></td></tr></table></figure>
+<p> 这里的昵称是Github昵称，不是刚才用命令配置的那个用户名，不放心的话可以在项目主页右上角复制过来。</p>
+ <img src="/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/github3.png" class="">
+</li>
+<li><p>安装部署插件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span></pre></td></tr></table></figure>
+<p> 接着直接<code>hexo g -d</code>就可以一键生成并部署到你的GitHub项目上了，并且GitHub主页的内容会根据项目文件实时更新</p>
+</li>
+<li><p>域名绑定</p>
+<ul>
+<li>使用自己的域名看起来更加高大上一点，并且也比“你的昵称.github.io”方便记忆，需要两个过程：</li>
+</ul>
+<ol>
+<li>在<code>..\博客文件夹\source\</code>目录下新建一个名为<code>CNAME</code>的 文件，内容为你的个人域名：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">xuhaotian.vip</span></pre></td></tr></table></figure></li>
+<li>域名解析，以西部数码为例，建立两条CNAME解析，主机名分别为<code>@</code>和<code>www</code>，对应值都是你的 Github 个人主页地址<img src="/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/github4.png" class=""></li>
+</ol>
+</li>
+<li><p>最后<code>hexo g -d</code>，部署成功后浏览器访问你的域名就可以啦，是不是很爽呢！</p>
+</li>
+</ol>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<li><a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="noopener">【2018更新】小白独立搭建博客–Github Pages和Hexo简明教程 </a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>徐昊天
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/http:/xuhaotian.vip/2018/04/21/%E4%BE%9D%E6%89%98%20Github%20Page%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E5%BB%BA%E7%AB%99/" title="依托 Github Page 绑定域名建站">http://xuhaotian.vip/2018/04/21/依托 Github Page 绑定域名建站/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Github-Page/" rel="tag"># Github Page</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/02/NET%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3%E5%88%9D%E4%BD%93%E9%AA%8C/" rel="prev" title=".NET软件破解初体验">
+      <i class="fa fa-chevron-left"></i> .NET软件破解初体验
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事由"><span class="nav-number">1.</span> <span class="nav-text">事由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署"><span class="nav-number">3.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="徐昊天"
+      src="/images/360.jpg">
+  <p class="site-author-name" itemprop="name">徐昊天</p>
+  <div class="site-description" itemprop="description">You only live once.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">徐昊天</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">20k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">18 分钟</span>
+</div>
+
+<div>
+<span id="sitetime"></span>
+<script language=javascript>
+  function siteTime(){
+    window.setTimeout("siteTime()", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+    year - 作为date对象的年份，为4位年份值
+    month - 0-11之间的整数，做为date对象的月份
+    day - 1-31之间的整数，做为date对象的天数
+    hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+    minutes - 0-59之间的整数，做为date对象的分钟数
+    seconds - 0-59之间的整数，做为date对象的秒数
+    microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+    var t1 = Date.UTC(2018,02,13,15,00,00); //北京时间2018-2-13 00:00:00
+    var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = t2-t1;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+    document.getElementById("sitetime").innerHTML=" 已安全运行"+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }
+  siteTime();
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

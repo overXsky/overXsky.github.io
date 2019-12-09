@@ -244,6 +244,7 @@
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -482,6 +483,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: '47jOMFMojiEBsm9Ini1jS3kf-gzGzoHsz',
+      appKey: 'NSBRTc4H16dKCivmJryFr2J1',
+      placeholder: "说点什么...",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

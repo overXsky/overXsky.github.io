@@ -481,11 +481,12 @@
 </li>
 <li><p>首先我们需要注册一个 <a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a> 账户。</p>
 </li>
-<li><p>然后访问控制台，新建一个应用。进入应用–设置–应用key，这两个值接下来会用到。<br><img src="http://m.qpic.cn/psb?/V114MjVz4Go3cs/PTmnN3pnAKStLX4Rc*42njPQrZuesdDxdCPlurMSIz4!/b/dEIBAAAAAAAA&bo=hgT*AYYE*wEDGTw!&rf=viewer_4" alt="image"></p>
-</li>
+<li><p>然后访问控制台，新建一个应用。进入应用–设置–应用key，这两个值接下来会用到。</p>
+<img src="/2017/04/25/Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/1.png" class=""> </li>
 <li><p>接下来修改主题配置文件如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">valine:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr><tr><td class="code"><pre><span class="line">  appid: 你的APP ID</span></pre></td></tr><tr><td class="code"><pre><span class="line">  appkey: 你的APP KEY</span></pre></td></tr><tr><td class="code"><pre><span class="line">  notify: true # mail notifier , https:&#x2F;&#x2F;github.com&#x2F;xCss&#x2F;Valine&#x2F;wiki</span></pre></td></tr><tr><td class="code"><pre><span class="line">  verify: true # Verification code</span></pre></td></tr><tr><td class="code"><pre><span class="line">  placeholder: ヾﾉ≧∀≦)o来啊，快活啊! # comment box placeholder</span></pre></td></tr><tr><td class="code"><pre><span class="line">  avatar: mm # gravatar style</span></pre></td></tr><tr><td class="code"><pre><span class="line">  guest_info: nick # custom comment header</span></pre></td></tr><tr><td class="code"><pre><span class="line">  pageSize: 10 # pagination size</span></pre></td></tr></table></figure></li>
-<li><p>大功告成，处于安全考虑，我们还可以在 LeanCloud 设置安全域名<br><img src="http://m.qpic.cn/psb?/V114MjVz4Go3cs/H4SwzYFTp1Kr1cmuVbRG5PVjQvpSnlAhrDCFOh0f0nA!/b/dEQBAAAAAAAA&bo=YgOhAmIDoQIDGTw!&rf=viewer_4" alt="image"></p>
+<li><p>大功告成，处于安全考虑，我们还可以在 LeanCloud 设置安全域名</p>
+<img src="/2017/04/25/Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/2.png" class="">
 </li>
 <li><p>邮件提醒功能详见<a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">官方wiki</a></p>
 </li>

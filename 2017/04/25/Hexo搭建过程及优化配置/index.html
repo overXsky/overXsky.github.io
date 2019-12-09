@@ -56,8 +56,8 @@
 <meta property="og:description" content="预备工具 安装node.js运行环境 安装git版本管理工具 具体步骤就不详说了  操作环境 Windows 10 x64 专业版，版本15063 Linux，OSX下类似">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;04&#x2F;25&#x2F;Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE&#x2F;main.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;m.qpic.cn&#x2F;psb?&#x2F;V114MjVz4Go3cs&#x2F;PTmnN3pnAKStLX4Rc*42njPQrZuesdDxdCPlurMSIz4!&#x2F;b&#x2F;dEIBAAAAAAAA&amp;bo&#x3D;hgT*AYYE*wEDGTw!&amp;rf&#x3D;viewer_4">
-<meta property="og:image" content="http:&#x2F;&#x2F;m.qpic.cn&#x2F;psb?&#x2F;V114MjVz4Go3cs&#x2F;H4SwzYFTp1Kr1cmuVbRG5PVjQvpSnlAhrDCFOh0f0nA!&#x2F;b&#x2F;dEQBAAAAAAAA&amp;bo&#x3D;YgOhAmIDoQIDGTw!&amp;rf&#x3D;viewer_4">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;04&#x2F;25&#x2F;Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;04&#x2F;25&#x2F;Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE&#x2F;2.png">
 <meta property="og:updated_time" content="2018-04-27T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;xuhaotian.vip&#x2F;2017&#x2F;04&#x2F;25&#x2F;Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE&#x2F;main.png">
@@ -257,7 +257,21 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
-            </span><br>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/04/25/Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2017/04/25/Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-file-word-o"></i>
@@ -394,11 +408,12 @@
 </li>
 <li><p>首先我们需要注册一个 <a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a> 账户。</p>
 </li>
-<li><p>然后访问控制台，新建一个应用。进入应用–设置–应用key，这两个值接下来会用到。<br><img src="http://m.qpic.cn/psb?/V114MjVz4Go3cs/PTmnN3pnAKStLX4Rc*42njPQrZuesdDxdCPlurMSIz4!/b/dEIBAAAAAAAA&bo=hgT*AYYE*wEDGTw!&rf=viewer_4" alt="image"></p>
-</li>
+<li><p>然后访问控制台，新建一个应用。进入应用–设置–应用key，这两个值接下来会用到。</p>
+<img src="/2017/04/25/Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/1.png" class=""> </li>
 <li><p>接下来修改主题配置文件如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">valine:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  appid: 你的APP ID</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  appkey: 你的APP KEY</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  notify: true # mail notifier , https:&#x2F;&#x2F;github.com&#x2F;xCss&#x2F;Valine&#x2F;wiki</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  verify: true # Verification code</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  placeholder: ヾﾉ≧∀≦)o来啊，快活啊! # comment box placeholder</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  avatar: mm # gravatar style</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  guest_info: nick # custom comment header</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  pageSize: 10 # pagination size</span></pre></td></tr></table></figure></li>
-<li><p>大功告成，处于安全考虑，我们还可以在 LeanCloud 设置安全域名<br><img src="http://m.qpic.cn/psb?/V114MjVz4Go3cs/H4SwzYFTp1Kr1cmuVbRG5PVjQvpSnlAhrDCFOh0f0nA!/b/dEQBAAAAAAAA&bo=YgOhAmIDoQIDGTw!&rf=viewer_4" alt="image"></p>
+<li><p>大功告成，处于安全考虑，我们还可以在 LeanCloud 设置安全域名</p>
+<img src="/2017/04/25/Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%8F%8A%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE/2.png" class="">
 </li>
 <li><p>邮件提醒功能详见<a href="https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">官方wiki</a></p>
 </li>
@@ -553,6 +568,7 @@
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -792,6 +808,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(() => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#comments',
+      verify: false,
+      notify: false,
+      appId: '47jOMFMojiEBsm9Ini1jS3kf-gzGzoHsz',
+      appKey: 'NSBRTc4H16dKCivmJryFr2J1',
+      placeholder: "说点什么...",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
